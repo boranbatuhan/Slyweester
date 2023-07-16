@@ -68,6 +68,6 @@ fill="#ffffff" stroke="none">
 
 <style scoped>
 .imgbg{
-    background: #000 url('src/assets/logins.webp') left top/cover no-repeat local;
+    background: #000 url('/src/assets/logins.webp') left top/cover no-repeat local;
 }
 </style>

@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components{
+    .text-outline-bold{
+        text-shadow: 2px 2px 0px #000000, 2px 0px 0px #000000, 2px -2px 0px #000000, 0px -2px 0px #000000, -2px -2px 0px #000000, -2px 0px 0px #000000, -2px 2px 0px #000000, -2px 2px 0px #000000;
+    }
+    .text-outline-thin{
+        text-shadow: 1px 1px 0px #000000, 1px 0px 0px #000000, 1px -1px 0px #000000, 0px -1px 0px #000000, -1px -1px 0px #000000, -1px 0px 0px #000000, -1px 1px 0px #000000, -1px 1px 0px #000000;
+    }
+
+}
+
+/* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #01BAEF transparent;
+  }
+
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 3px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #01BAEF;
+    border-radius: 10px;
+    border: 0px none transparent;
+  }

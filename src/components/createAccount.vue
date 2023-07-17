@@ -1,6 +1,7 @@
 <script setup>
 import logo from "/src/components/logo.vue"
-import { reactive, ref } from "vue";
+import { computed, reactive, ref } from "vue";
+import router from "/src/router"
 
 const step = ref(1)
 const createAccForm=reactive({
@@ -46,13 +47,30 @@ const reset=()=>{
     createAccForm.month=0
     createAccForm.year=0
     createAccForm.password=""
-
 }
 
-const logla=()=>{
+const nextStep=()=>{
     console.log('createAccForm :>> ', createAccForm);
+    if(step.value<=3)
+    {
     step.value++
+
+    }
+    else{
+        step.value=4
+    }
 }
+const goHome=()=>{
+    router.push("/home")
+}
+
+const checkform = computed(() => {
+
+    return  step.value<=2 ? (createAccForm.name !== "" && createAccForm.mail !== "" && createAccForm.day > 0 && createAccForm.month > 0 && createAccForm.year > 0 ? false : true) : (createAccForm.password !== "" && createAccForm.password.length > 8 ? false : true);
+
+
+});
+
 
 </script>
 
@@ -74,6 +92,7 @@ const logla=()=>{
                 <label @click="clickFocus('name')" :class="{'border-sl-blue':formActives.name==true, 'border-slate-600 ':formActives.name==false}" class="border relative cursor-text w-full group h-16 rounded-md overflow-hidden" for="name">
                     <p :class="{'leading-4 text-xs text-sl-blue pt-1':formActives.name==true, 'leading-[56px] text-xl text-slate-600':formActives.name==false}" class="select-none px-2 transition-all ">İsim</p>
                     <input :class="{'absolute bottom-0 left-0' : formActives.name==true}" @focus="clickFocus('name')" class="outline-none w-full delay-1000 bg-transparent text-white  p-2 " type="text" name="name" id="name" autocomplete="off" maxlength="50" v-model="createAccForm.name">
+                    <p :class="{'text-sl-blue':formActives.name==true, 'text-slate-600':formActives.name==false}"  class="select-none text-xs absolute top-1 right-1">{{ createAccForm.name.length }} / 50 </p>
                 </label>
                 <!-- mail -->
                 <label @click="clickFocus('mail')" :class="{'border-sl-blue':formActives.mail==true, 'border-slate-600 ':formActives.mail==false}" class="border relative cursor-text w-full group h-16 rounded-md overflow-hidden" for="mail">
@@ -167,11 +186,16 @@ const logla=()=>{
             
             <!-- RESULT TAB -->
             <div v-if="step==4" class=" w-full h-full px-2 md:px-16 py-2 md:py-2 flex items-start justify-start gap-6 md:gap-3 flex-col ">
+                <div class="w-full h- relative ">
+                    <img draggable="false" loading="eager" class=" w-full h-full mix-blend-screen" src="/src/assets/confetti.gif" alt="confetti">
+                    <h1 class="text-white/90 absolute bottom-0 left-0 bg-sl-black w-full text-center select-none text-3xl font-bold"> <strong class="text-sl-blue">Slyweester</strong>'a hoşgeldin</h1>
+                </div>
             </div>
 
             <!-- button area -->
             <div class="border-t-shadow w-full h-1/6 flex items-center justify-center">
-                <button @click="logla" class="text-black bg-white w-9/12 py-2 font-bold tracking-wider rounded-full hover:bg-zinc-300 disabled:pointer-events-none disabled:bg-zinc-500">İleri</button>
+                <button v-if="step<=3" @click="nextStep" :disabled="checkform" class="text-black bg-white w-9/12 py-2 font-bold tracking-wider rounded-full hover:bg-zinc-300 disabled:pointer-events-none disabled:bg-zinc-500">İleri</button>
+                <button v-if="step==4" @click="goHome" class="text-black bg-white w-9/12 py-2 font-bold tracking-wider rounded-full hover:bg-zinc-300 disabled:pointer-events-none disabled:bg-zinc-500">Keşfet</button>
             </div>
         </div>
 

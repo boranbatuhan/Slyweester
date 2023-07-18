@@ -41,6 +41,8 @@ const slywetle =()=>{
   {
     store.commit("pushTag", tagContent.value);
   }
+  console.log('slyweet :>> ', slyweet);
+  
   resetInputs()
 
 

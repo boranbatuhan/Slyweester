@@ -19,7 +19,24 @@ const store = createStore({
                 count:7
             },
         ],
-        slyweets:[]
+        slyweets:[
+            {
+                content:'taglı slyweet',
+                date:1689688535530,
+                id:"userid",
+                name:"username",
+                tag:"taglı"
+            },
+            {
+                content:'tagsız slyweet',
+                date:1689688535550,
+                id:"userid",
+                name:"username",
+                tag:null
+            }
+        ],
+        forbiddenids:["home"],
+        activePage:false
         
 
     },

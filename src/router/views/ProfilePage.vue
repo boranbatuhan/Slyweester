@@ -1,4 +1,5 @@
 <script setup>
+import router from "/src/router"
 import { ref } from "vue";
 import store from "/src/store";
 import slyweetCard from "/src/components/slyweetCard.vue"

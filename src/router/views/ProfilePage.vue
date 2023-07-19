@@ -6,19 +6,34 @@ import store from "/src/store";
 
 
 const tab=ref("slywet")
+const openDotsMenu = ref(false)
+
+const logOut=()=>{
+    router.push("/")
+}
 
 </script>
 
 <template>
     <div class="flex items-start justify-start flex-col overflow-y-auto box-border w-full h-full ">
        
-        <div class="sticky top-0 w-full h-fit z-50 backdrop-blur-sm cursor-pointer bg-sl-black/80 px-4 py-1 text-white flex items-center justify-start gap-4 md:gap-10">
+        <div class="sticky  top-0 w-full h-fit z-50 backdrop-blur-sm cursor-pointer bg-sl-black/80 px-4 py-1 text-white flex items-center justify-start gap-4 md:gap-10">
             <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path d="M19 11.001H7.14l3.63-4.36a1.001 1.001 0 0 0-1.54-1.28l-5 6a1.184 1.184 0 0 0-.09.15c0 .05 0 .08-.07.13a1 1 0 0 0-.07.36 1 1 0 0 0 .07.36c0 .05 0 .08.07.13.026.052.056.103.09.15l5 6a1 1 0 0 0 1.41.13 1 1 0 0 0 .13-1.41l-3.63-4.36H19a1 1 0 0 0 0-2Z"></path>
             </svg>
             <div>
                 <p class="font-bold"> username</p>
                 <p class="font-normal tracking-wider text-xs text-zinc-500"> 4.617 Slywet</p>
+            </div>
+            <div class="ml-auto relative">
+                <svg @click="openDotsMenu = !openDotsMenu"  width="24" height="24" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2Zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2Zm0 12c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2Z"></path>
+                </svg>
+                <div @click="logOut()" @mouseleave="openDotsMenu=false" class=" w-fit absolute top-10 right-0" :class="{'invisible':openDotsMenu==false ,'visible':openDotsMenu==true }">
+                    <div class="border w-32 shrink-0 px-4 py-1 rounded-full hover:bg-white/10 backdrop-blur-md cursor-pointer transition-all duration-150">
+                        <p class="font-bold text-white w-full text-center ">Çıkış yap</p>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="bg-sl-blue/50 w-full h-32 md:h-40 shrink-0"></div>

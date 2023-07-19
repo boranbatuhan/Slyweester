@@ -1,8 +1,9 @@
 <script setup>
+import slyweetCard from "/src/components/slyweetCard.vue"
 import router from "/src/router"
 import { ref } from "vue";
 import store from "/src/store";
-import slyweetCard from "/src/components/slyweetCard.vue"
+
 
 const tab=ref("slywet")
 
@@ -10,6 +11,7 @@ const tab=ref("slywet")
 
 <template>
     <div class="flex items-start justify-start flex-col overflow-y-auto box-border w-full h-full ">
+       
         <div class="sticky top-0 w-full h-fit z-50 backdrop-blur-sm cursor-pointer bg-sl-black/80 px-4 py-1 text-white flex items-center justify-start gap-4 md:gap-10">
             <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path d="M19 11.001H7.14l3.63-4.36a1.001 1.001 0 0 0-1.54-1.28l-5 6a1.184 1.184 0 0 0-.09.15c0 .05 0 .08-.07.13a1 1 0 0 0-.07.36 1 1 0 0 0 .07.36c0 .05 0 .08.07.13.026.052.056.103.09.15l5 6a1 1 0 0 0 1.41.13 1 1 0 0 0 .13-1.41l-3.63-4.36H19a1 1 0 0 0 0-2Z"></path>

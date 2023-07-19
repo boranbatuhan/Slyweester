@@ -2,6 +2,8 @@
 import logo from "/src/components/logo.vue"
 import login from "/src/components/login.vue"
 import createAccount from "/src/components/createAccount.vue"
+import loadingScene from "/src/components/loadingScene.vue"
+
 import { ref } from "vue"
 
 
@@ -12,11 +14,16 @@ const modals = {
   createAccount,
 }
 
+const closeModal=()=>{
+    modalName.value=""
+}
 
 </script>
 
 <template>
+    
     <div class=" flex items-start justify-start  md:items-center md:justify-center flex-col md:flex-row max-w-screen h-screen overflow-x-hidden">
+        <loadingScene></loadingScene>
         <!-- photo area -->
         <div class="imgbg basis-1/12 md:basis-1/3 w-full h-full box-border  order-2 md:order-1 bg-[url('/src/assets/logins.webp')] object-fill flex items-center justify-center ">
             <svg class=" scale-75 md:scale-100" version="1.0" xmlns="http://www.w3.org/2000/svg"
@@ -43,7 +50,7 @@ fill="#ffffff" stroke="none">
         </div>
         <!-- content area -->
         <div class="basis-11/12 md:basis-2/3 w-full h-fit md:h-full box-border shrink-0 order-1 md:order-2 flex flex-col items-start justify-start pt-5 pl-8 md:pt-10 md:pl-10 md:overflow-y-auto pb-10 md:pb-0">
-            <component :is="modals[modalName]"></component>
+            <component :is="modals[modalName]" :closeModal="closeModal"></component>
             <logo class=" mb-6 md:mb-16 scale-75 md:scale-100" ></logo>
             <h1 class="text-white/90 text-7xl font-extrabold tracking-wide  mb-16 w-full md:w-[480px] ">
                 Şu anda olup bitenler

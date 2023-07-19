@@ -7,6 +7,7 @@ import store from "/src/store"
 
 
 <template>
+    
     <div class="overflow-x-hidden overflow-y-scroll pb-10 w-full flex items-center justify-start flex-col  ">
         <div class="hidden md:inline-flex h-10 py-2 sticky top-0 bg-sl-black w-full z-[999] text-white tracking-widest  ">
             <p class="animate-pulse text-center w-full duration-[20000ms]">

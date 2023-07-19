@@ -1,7 +1,12 @@
 <script setup>
 import logo from "/src/components/logo.vue"
-import { computed, reactive, ref } from "vue";
+import { computed, onMounted, reactive, ref } from "vue";
 import router from "/src/router"
+
+
+const props = defineProps({
+    closeModal:Function
+})
 
 const step = ref(1)
 const createAccForm=reactive({
@@ -10,7 +15,9 @@ const createAccForm=reactive({
     password:"",
     day:0,
     month:0,
-    year:0
+    year:0,
+    userid:""
+
 })
 
 const formActives=reactive({
@@ -19,7 +26,10 @@ const formActives=reactive({
     password:false,
     day:false,
     month:false,
-    year:false
+    year:false,
+    userid:false,
+
+
 })
 
 const clickFocus=(id)=>{
@@ -41,12 +51,14 @@ const reset=()=>{
     formActives.month=false
     formActives.year=false
     formActives.password=false
+    formActives.userid=false
     createAccForm.name=""
     createAccForm.mail=""
     createAccForm.day=0
     createAccForm.month=0
     createAccForm.year=0
     createAccForm.password=""
+    createAccForm.userid=""
 }
 
 const nextStep=()=>{
@@ -72,15 +84,23 @@ const checkform = computed(() => {
 });
 
 
+onMounted(()=>{
+
+    document.addEventListener('mousedown',(event)=>{
+        clickFocus(event.target.id.toLowerCase())
+    })
+
+})
+
 </script>
 
 <template>
     <div class="w-screen h-screen fixed top-0 left-0 bg-zinc-700/50 z-[999] flex items-center justify-center">
         
-        <div  class="w-full h-full md:w-[500px] md:h-[500px] shrink-0 rounded-none  md:rounded-2xl bg-sl-black flex items-center justify-center flex-col">
+        <div  class="w-full h-[100svh] md:w-[500px] md:h-[500px] shrink-0 rounded-none  md:rounded-2xl bg-sl-black flex items-center justify-center flex-col">
             <!-- steps and close area -->
             <div class=" w-full  text-white p-3 flex items-center justify-start gap-4"> 
-                <svg @click="reset()" class="hover:text-sl-blue" width="24" height="24" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <svg @click="props.closeModal()" class="hover:text-sl-blue" width="24" height="24" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="m13.41 11.996 4.3-4.29a1.004 1.004 0 1 0-1.42-1.42l-4.29 4.3-4.29-4.3a1.004 1.004 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a.999.999 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1.001 1.001 0 0 0 1.639-.325 1 1 0 0 0-.22-1.095l-4.3-4.29Z"></path>
                 </svg>
                 <p class="font-bold text-white/90">Adım {{step}}/4</p>
@@ -139,15 +159,11 @@ const checkform = computed(() => {
                     Detaylı bilgi almak için bizimle ileşime geçmekten çekinme. İletişim adreslerimiz sana daima açıktır.
                 </p>
             </div>
-            <!-- PASSWORD TAB -->
+            <!--password TAB -->
 
-            <div v-if="step==3" class=" w-full h-full px-2 md:px-16 py-2 md:py-2 flex items-start justify-start gap-6 md:gap-3 flex-col ">
-            <ul class="w-full  flex flex-col items-start">
-                <li @click="clickFocus('')" class="flex items-center justify-center self-center">
-                    <div class="mx-auto my-4 border-sl-blue rounded-full border p-2">
-                        <logo class="pointer-events-none"></logo>
-                    </div>
-                </li>
+            <div v-if="step==3"  class=" w-full h-full px-2 md:px-16 py-2 md:py-2 flex items-start justify-center gap-3 flex-col ">
+            <ul  class="w-full h-fit flex flex-col items-start justify-center gap-2">
+                <!-- name display -->
                 <li class="flex items-center justify-center gap-3">
                     <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm0-6a2 2 0 1 1 0 4 2 2 0 0 1 0-4Z"></path>
@@ -157,6 +173,7 @@ const checkform = computed(() => {
                        {{createAccForm.name}}
                    </p>
                 </li>
+                <!-- mail display -->
                 <li class="flex items-center justify-center gap-3">
                     <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M19 4H5a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3Zm-.67 2L12 10.75 5.67 6h12.66ZM19 18H5a1 1 0 0 1-1-1V7.25l7.4 5.55a1 1 0 0 0 1.2 0L20 7.25V17a1 1 0 0 1-1 1Z"></path>
@@ -165,6 +182,7 @@ const checkform = computed(() => {
                     {{createAccForm.mail}}
                    </p>
                 </li>
+                <!-- birthdate display -->
                 <li class="flex items-center justify-center gap-3">
                     <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M18 4h-1V3a1 1 0 0 0-2 0v1H9V3a1 1 0 0 0-2 0v1H6a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3ZM6 6h1v1a1 1 0 0 0 2 0V6h6v1a1 1 0 0 0 2 0V6h1a1 1 0 0 1 1 1v4H5V7a1 1 0 0 1 1-1Zm12 14H6a1 1 0 0 1-1-1v-6h14v6a1 1 0 0 1-1 1Z"></path>
@@ -177,18 +195,23 @@ const checkform = computed(() => {
 
                 </li>
             </ul>
-                <!-- password -->
-                <label @click="clickFocus('password')" :class="{'border-sl-blue':formActives.password==true, 'border-slate-600 ':formActives.password==false}" class="border relative cursor-text w-full group h-16 rounded-md overflow-hidden" for="password">
-                    <p :class="{'leading-4 text-xs text-sl-blue pt-1':formActives.password==true, 'leading-[56px] text-xl text-slate-600':formActives.password==false}" class="select-none px-2 transition-all ">Şifre</p>
-                    <input :class="{'absolute bottom-0 left-0' : formActives.password==true}" @focus="clickFocus('password')" class="outline-none w-full delay-1000 bg-transparent text-white  p-2 " type="password" name="password" id="password" autocomplete="off" maxlength="50" v-model="createAccForm.password">
-                </label>
-            </div>
+            <!-- userid -->
+            <label @click="clickFocus('userid')" :class="{'border-sl-blue':formActives.userid==true, 'border-slate-600 ':formActives.userid==false}" class="border shrink-0 relative cursor-text w-full group h-16 rounded-md overflow-hidden" for="userid">
+                <p :class="{'leading-4 text-xs text-sl-blue pt-1':formActives.userid==true, 'leading-[56px] text-xl text-slate-600':formActives.userid==false}" class="select-none px-2 transition-all ">Kullanıcı adı</p>
+                <input :class="{'absolute bottom-0 left-0' : formActives.userid==true}" @focus="clickFocus('userid')" class="outline-none w-full delay-1000 bg-transparent text-white  p-2 " type="text" name="userid" id="userid" autocomplete="off" maxlength="50" v-model="createAccForm.userid">
+            </label>
+            <!-- password -->
+            <label @click="clickFocus('password')" :class="{'border-sl-blue':formActives.password==true, 'border-slate-600 ':formActives.password==false}" class="border shrink-0 relative cursor-text w-full group h-16 rounded-md overflow-hidden" for="password">
+                <p :class="{'leading-4 text-xs text-sl-blue pt-1':formActives.password==true, 'leading-[56px] text-xl text-slate-600':formActives.password==false}" class="select-none px-2 transition-all ">Şifre</p>
+                <input :class="{'absolute bottom-0 left-0' : formActives.password==true}" @focus="clickFocus('password')" class="outline-none w-full delay-1000 bg-transparent text-white  p-2 " type="password" name="password" id="password" autocomplete="off" maxlength="50" v-model="createAccForm.password">
+            </label>
+        </div>
             
             <!-- RESULT TAB -->
             <div v-if="step==4" class=" w-full h-full px-2 md:px-16 py-2 md:py-2 flex items-start justify-start gap-6 md:gap-3 flex-col ">
                 <div class="w-full h- relative ">
                     <img draggable="false" loading="eager" class=" w-full h-full mix-blend-screen" src="/src/assets/confetti.gif" alt="confetti">
-                    <h1 class="text-white/90 absolute bottom-0 left-0 bg-sl-black w-full text-center select-none text-3xl font-bold"> <strong class="text-sl-blue">Slyweester</strong>'a hoşgeldin</h1>
+                    <h1 class="text-white/90 absolute bottom-0 left-0 bg-gradient-to-t from-sl-black via-sl-black to-transparent py-10 w-full text-center select-none text-3xl font-bold"> <strong class="text-sl-blue">Slyweester</strong>'a hoşgeldin</h1>
                 </div>
             </div>
 

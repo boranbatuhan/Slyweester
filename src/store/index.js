@@ -36,7 +36,7 @@ const store = createStore({
             }
         ],
         forbiddenids:["home"],
-        activePage:false
+        activePage:false,
         
 
     },

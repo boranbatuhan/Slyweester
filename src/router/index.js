@@ -14,7 +14,7 @@ import store from "/src/store"
         },
         {                                                  
             path:'/:username',                                                 
-            name:'profile',                                              
+            name:'Profile',                                              
             component: ()=> import ("/src/router/views/ProfilePage.vue")       
         },
 ]                                                            
@@ -25,6 +25,7 @@ import store from "/src/store"
  
  
  router.beforeEach((to, from, next) => {
+    console.log("Mevcut Rota Adı:", from.name); // Mevcut rota adını logla
     console.log("Mevcut Rota Adı:", to.name); // Mevcut rota adını logla
     if(to.name=='Login')
     {
@@ -32,6 +33,7 @@ import store from "/src/store"
         console.log('logine eşit menu göster :>> ', store.state.activePage);
         next(); // Router işlemini devam ettir
     }
+
     else{
         store.state.activePage=true
         console.log('logine eşit menu göster else:>> ', store.state.activePage);

@@ -13,6 +13,16 @@ import store from "/src/store"
             component: ()=> import ("/src/router/views/HomePage.vue")       
         },
         {                                                  
+            path:'/tags',                                                 
+            name:'Tags',                                              
+            component: ()=> import ("/src/router/views/TagsPage.vue")       
+        },
+        {                                                  
+            path:'/tag/:tagname',                                                 
+            name:'Tagdetail',                                              
+            component: ()=> import ("/src/router/views/TagdetailPage.vue")       
+        },
+        {                                                  
             path:'/:username',                                                 
             name:'Profile',                                              
             component: ()=> import ("/src/router/views/ProfilePage.vue")       

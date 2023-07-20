@@ -25,7 +25,7 @@ const store = createStore({
                 date:1689688535530,
                 id:"userid",
                 name:"username",
-                tag:"taglı"
+                tag:"ev"
             },
             {
                 content:'tagsız slyweet',
@@ -35,7 +35,7 @@ const store = createStore({
                 tag:null
             }
         ],
-        forbiddenids:["home"],
+        forbiddenids:["home","profile","tags","tag"],
         activePage:false,
         
 

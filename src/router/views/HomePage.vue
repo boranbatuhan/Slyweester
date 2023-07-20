@@ -22,6 +22,8 @@ const tab = ref("sanaÖzel")
         <newSlywet></newSlywet>
         <slyweetCard class="px-2" v-for="sly in store.state.slyweets" :key="sly" :id="sly.id" :content="sly.content" :date="sly.date" :name="sly.name" :tag="sly.tag" :like="9760" ></slyweetCard>
  
-
+        <ul>
+            <li v-for=" i in 200" :key="i">{{ i }}</li>
+        </ul>
     </div>
 </template>

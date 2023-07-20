@@ -97,7 +97,7 @@ onMounted(()=>{
 <template>
     <div class="w-screen h-screen fixed top-0 left-0 bg-sl-black md:bg-zinc-700/50 z-[999] flex items-center justify-center">
         
-        <div  class="w-full h-[90svh] md:w-[500px] md:h-[500px] shrink-0 rounded-none  md:rounded-2xl bg-sl-black flex items-center justify-center flex-col overflow-y-auto">
+        <div  class="w-full h-[100dvh] md:w-[500px] md:h-[500px] shrink-0 rounded-none  md:rounded-2xl bg-sl-black flex items-center justify-center flex-col overflow-y-auto">
             <!-- steps and close area -->
             <div class=" w-full  text-white p-3 flex items-center justify-start gap-4"> 
                 <svg @click="props.closeModal()" class="hover:text-sl-blue" width="24" height="24" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

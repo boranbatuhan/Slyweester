@@ -7,7 +7,7 @@ import store from "/src/store"
 
 </script>
 <template>
-<div class="flex items-center justify-center  w-full h-screen  flex-col md:flex-row overflow-hidden">
+<div class="flex items-center justify-center  w-full h-[100dvh]  flex-col md:flex-row overflow-hidden">
 <loadingScene></loadingScene>
   <sideMenu v-if="store.state.activePage"  class=" shrink-0 w-full h-full border-t md:border-t-0 basis-1/12 md:basis-1/4 order-2 md:order-1" ></sideMenu>
   <router-view :class="{'basis-full md:!basis-full':store.state.activePage==false, 'basis-11/12 md:!basis-2/4 border-0 md:border-x order-1 md:order-2':store.state.activePage==true}" class="  shrink-0 w-full h-full  "></router-view>

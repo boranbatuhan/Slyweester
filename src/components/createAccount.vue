@@ -95,7 +95,7 @@ onMounted(()=>{
 </script>
 
 <template>
-    <div class="w-screen h-screen fixed top-0 left-0 bg-sl-black md:bg-zinc-700/50 z-[999] flex items-center justify-center">
+    <div class="w-screen h-screen fixed top-0 left-0 bg-sl-black md:bg-zinc-700/50 z-[999] flex items-start justify-start md:items-center md:justify-center">
         
         <div  class="w-full h-[90dvh] md:w-[500px] md:h-[500px] shrink-0 rounded-none  md:rounded-2xl bg-sl-black flex items-center justify-center flex-col overflow-y-auto">
             <!-- steps and close area -->

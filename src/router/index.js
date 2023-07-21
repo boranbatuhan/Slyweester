@@ -15,12 +15,12 @@ import store from "/src/store"
         {                                                  
             path:'/tags',                                                 
             name:'Tags',                                              
-            component: ()=> import ("/src/router/views/TagsPage.vue")       
+            component: ()=> import ("/src/router/views/TagsPage.vue")      
         },
         {                                                  
             path:'/tag/:tagname',                                                 
-            name:'Tagdetail',                                              
-            component: ()=> import ("/src/router/views/TagdetailPage.vue")       
+            name:'TagDetail',                                              
+            component: ()=> import ("/src/router/views/TagdetailPage.vue")   
         },
         {                                                  
             path:'/:username',                                                 
@@ -30,13 +30,13 @@ import store from "/src/store"
 ]                                                            
  const router =createRouter({                                      
      history:createWebHistory(),                               
-     routes,                                                       
+     routes,      
+                                                      
  })       
  
  
  router.beforeEach((to, from, next) => {
-    console.log("Mevcut Rota Adı:", from.name); // Mevcut rota adını logla
-    console.log("Mevcut Rota Adı:", to.name); // Mevcut rota adını logla
+
     if(to.name=='Login')
     {
         store.state.activePage=false
@@ -49,5 +49,7 @@ import store from "/src/store"
         console.log('logine eşit menu göster else:>> ', store.state.activePage);
         next(); // Router işlemini devam ettir
     }
+    
   });
+
  export default router; 

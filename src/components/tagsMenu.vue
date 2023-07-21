@@ -11,7 +11,6 @@ const sortedTags = computed(() => {
 
 
 
-
 </script>
 <template>
     <div class="flex items-start justify-center flex-col">
@@ -28,10 +27,10 @@ const sortedTags = computed(() => {
                 </svg>
                 <p>Gündem</p>
             </div>
-            <tag :tag="sortedTags[0].tag " :count=" sortedTags[0].count" class="mx-auto basis-1/4 hover:bg-sl-blue/10 my-1 rounded-lg"></tag>
-            <tag :tag="sortedTags[1].tag " :count=" sortedTags[1].count" class="mx-auto basis-1/4 hover:bg-sl-blue/10 my-1 rounded-lg"></tag>
-            <tag :tag="sortedTags[2].tag " :count=" sortedTags[2].count" class="mx-auto basis-1/4 hover:bg-sl-blue/10 my-1 rounded-lg"></tag>
-            <tag :tag="sortedTags[3].tag " :count=" sortedTags[3].count" class="mx-auto basis-1/4 hover:bg-sl-blue/10 my-1 rounded-lg"></tag>
+            <tag :tag="sortedTags[0].tag" :count=" sortedTags[0].count" :key="sortedTags[0].tag" class="mx-auto basis-1/4 hover:bg-sl-blue/10 my-1 rounded-lg"></tag>
+            <tag :tag="sortedTags[1].tag" :count=" sortedTags[1].count" :key="sortedTags[1].tag" class="mx-auto basis-1/4 hover:bg-sl-blue/10 my-1 rounded-lg"></tag>
+            <tag :tag="sortedTags[2].tag" :count=" sortedTags[2].count" :key="sortedTags[2].tag" class="mx-auto basis-1/4 hover:bg-sl-blue/10 my-1 rounded-lg"></tag>
+            <tag :tag="sortedTags[3].tag" :count=" sortedTags[3].count" :key="sortedTags[3].tag" class="mx-auto basis-1/4 hover:bg-sl-blue/10 my-1 rounded-lg"></tag>
             
         </div>
         <div class="mt-auto hidden mx-auto text-xs md:flex flex-wrap items-center justify-center text-sl-blue/50">

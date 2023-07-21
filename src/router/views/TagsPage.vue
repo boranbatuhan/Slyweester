@@ -20,7 +20,7 @@ const sortedTags = computed(() => {
             <p class="text-white/90 text-lg font-bold">Gündemler</p>
         </div>
         <ul class="w-full">
-            <li @click="router.push(`/tag/${i.tag}`)" v-for="i in sortedTags" :key="i" class="w-full bg-sl-black hover:bg-sl-blue/5 px-2 py-2 md:px-6 cursor-pointer">
+            <li v-for="i in sortedTags" :key="i" class="w-full bg-sl-black hover:bg-sl-blue/5 px-2 py-2 md:px-6 cursor-pointer">
             <tag :tag="i.tag " :count=" i.count" ></tag>
             </li>
         </ul>

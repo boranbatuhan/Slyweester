@@ -111,7 +111,7 @@ const toggleMiniqMenu=()=>{
                         <path d="M12 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2Zm6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2ZM6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2Z"></path>
                     </svg>
                 </div>
-                <div v-if="showMiniqMenu"  class=" cursor-pointer absolute top-0 -translate-x-2 -translate-y-28 py-4 rounded-xl z-[999] boxshadow w-[310px] bg-sl-black">
+                <div v-if="showMiniqMenu" @mouseleave="toggleMiniqMenu"  class=" cursor-pointer absolute top-0 -translate-x-2 -translate-y-28 py-4 rounded-xl z-[999] boxshadow w-fit bg-sl-black">
                     <p  class="bg-sl-black px-2 py-1 !cursor-pointer select-none  hover:bg-white/20 md:text-base !text-sm font-bold !text-white/90 duration-200 border-t border-zinc-600">var olan bir hesap ekle</p>
                     <p @click="logla" class="bg-sl-black px-2 py-1 !cursor-pointer select-none  hover:bg-white/20 md:text-base !text-sm font-bold !text-white/90 duration-200">@username hesabından çıkış yap</p>
                 </div>

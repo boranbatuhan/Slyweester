@@ -18,7 +18,12 @@ import store from "/src/store"
             component: ()=> import ("/src/router/views/TagsPage.vue")      
         },
         {                                                  
-            path:'/tag/:tagname',                                                 
+            path:'/help',                                                 
+            name:'Help',                                              
+            component: ()=> import ("/src/router/views/HelpPage.vue")      
+        },
+        {                                                  
+            path:'/tag/:tagname',                  
             name:'TagDetail',                                              
             component: ()=> import ("/src/router/views/TagdetailPage.vue")   
         },

@@ -44,11 +44,11 @@ const convertDate = computed(()=>{
 
 <div class="border-b border-sl-blue/10  my-4 w-full">
     <ul class=" max-w-2xl mx-auto w-full p-3 flex flex-col relative text-white ">
+        <!-- user info Start -->
         <li class="flex w-full   gap-5 px-4 py-1">
             <img draggable="false" class="border-sl-blue border rounded-full w-10 h-10 shrink-0 md:w-12 md:h-12" src="/src/assets/mini_PP.png" alt="pp"> 
             <div  >
                 <p class="flex items-center justify-start">{{ props.name }} 
-                    
                     <svg class="text-sl-blue fill-sl-blue mx-2" version="1.0" xmlns="http://www.w3.org/2000/svg"
  width="16" height="16" viewBox="0 0 500.000000 500.000000"
  preserveAspectRatio="xMidYMid meet">
@@ -69,25 +69,27 @@ class="text-sl-blue fill-sl-blue" stroke="none">
 -154 486 -337 37 -47 28 -42 -67 35 -225 183 -591 242 -957 153 -54 -13 -97
 -22 -97 -20 0 2 35 24 77 49 203 119 382 157 558 120z"/>
 </g>
-    </svg>
-
+                    </svg>
                 </p>
                 <p class="text-white/50 hover:cursor-pointer hover:text-sl-blue transition-all text-xs">@{{ props.id }}</p>
             </div>
         </li>
-
+        <!-- user info End -->
+        <!-- slywet content Start -->
         <li class=" pl-2 md:pl-20 pr-2 py-2 w-full flex flex-row items-center justify-start">
             <p class="w-full h-fit break-words inline">
                 <tag v-if="props.tag !=null" :tag="props.tag" class=" inline"></tag>
                 {{ props.content }}
             </p>
         </li>
+        <!-- slywet content End -->
+        <!-- slywet buttons Start -->
         <li class="w-full flex items-center justify-end mb-4">
             <div @click="liked=false" v-if="liked==true" class=" text-sl-blue hover:saturate-50 cursor-pointer inline-flex ">
                 <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-  <path d="M12 21a.998.998 0 0 1-.71-.29l-7.77-7.78a5.26 5.26 0 0 1 0-7.4 5.24 5.24 0 0 1 7.4 0L12 6.61l1.08-1.08a5.24 5.24 0 0 1 7.4 0 5.26 5.26 0 0 1 0 7.4l-7.77 7.78A1.001 1.001 0 0 1 12 21Z"></path>
-</svg>
-<p class="ml-1">{{ formatLikes(props.like) }}</p>
+                  <path d="M12 21a.998.998 0 0 1-.71-.29l-7.77-7.78a5.26 5.26 0 0 1 0-7.4 5.24 5.24 0 0 1 7.4 0L12 6.61l1.08-1.08a5.24 5.24 0 0 1 7.4 0 5.26 5.26 0 0 1 0 7.4l-7.77 7.78A1.001 1.001 0 0 1 12 21Z"></path>
+                </svg>
+            <p class="ml-1">{{ formatLikes(props.like) }}</p>
 
             </div>
             <div @click="liked=true" v-if="liked==false" class=" text-sl-blue hover:saturate-150 cursor-pointer inline-flex ">
@@ -98,7 +100,10 @@ class="text-sl-blue fill-sl-blue" stroke="none">
 <p class="ml-1">{{ formatLikes(props.like) }}</p>
             </div>
         </li>
+        <!-- slywet buttons End -->
+        <!-- post date Start -->
         <li class="absolute top-1 right-2 select-none text-xs text-white/50">{{ convertDate }}</li>
+        <!-- post date End -->
     </ul>
     
 

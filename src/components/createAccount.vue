@@ -105,24 +105,29 @@ onMounted(()=>{
                 </svg>
                 <p class="font-bold text-white/90">Adım {{step}}/4</p>
             </div>
-            <!-- FORM TAB -->
+            <!-- PAGE1 form  Start-->
             <div v-if="step==1" class=" w-full h-full px-2 md:px-16 py-2 md:py-2 flex items-start justify-start gap-6 md:gap-3 flex-col">
                 <p class="text-white/90 font-bold text-3xl">Hesabını oluştur</p>
-                <!-- name -->
+                <!-- name Start-->
                 <label @click="clickFocus('name')" :class="{'border-sl-blue':formActives.name==true, 'border-slate-600 ':formActives.name==false}" class="border relative cursor-text w-full group h-16 rounded-md overflow-hidden" for="name">
                     <p :class="{'leading-4 text-xs text-sl-blue pt-1':formActives.name==true, 'leading-[56px] text-xl text-slate-600':formActives.name==false}" class="select-none px-2 transition-all ">İsim</p>
                     <input :class="{'absolute bottom-0 left-0' : formActives.name==true}" @focus="clickFocus('name')" class="outline-none w-full delay-1000 bg-transparent text-white  p-2 " type="text" name="name" id="name" autocomplete="off" maxlength="50" v-model="createAccForm.name">
                     <p :class="{'text-sl-blue':formActives.name==true, 'text-slate-600':formActives.name==false}"  class="select-none text-xs absolute top-1 right-1">{{ createAccForm.name.length }} / 50 </p>
                 </label>
-                <!-- mail -->
+                <!-- name End-->
+
+                <!-- mail Start-->
                 <label @click="clickFocus('mail')" :class="{'border-sl-blue':formActives.mail==true, 'border-slate-600 ':formActives.mail==false}" class="border relative cursor-text w-full group h-16 rounded-md overflow-hidden" for="mail">
                     <p :class="{'leading-4 text-xs text-sl-blue pt-1':formActives.mail==true, 'leading-[56px] text-xl text-slate-600':formActives.mail==false}" class="select-none px-2 transition-all ">E-posta</p>
                     <input :class="{'absolute bottom-0 left-0' : formActives.mail==true}" @focus="clickFocus('mail')" class="outline-none w-full delay-1000 bg-transparent text-white  p-2 " type="email" name="mail" id="mail" autocomplete="off"  v-model="createAccForm.mail">
                 </label>
-                <!-- birthdate -->
+                <!-- mail End-->
+
+                <!-- birthdate Start -->
                 <p class="text-white font-semibold">Doğum tarihi</p>
                 <p class="text-xs text-zinc-400">Bu, herkese açık olarak gösterilmeyecek. Bu hesap bir işletme, evcil hayvan veya başka bir şey için olsa bile kendi yaşını doğrulaman gerekir.</p>
                 <div class="flex items-center justify-evenly w-full">
+
                 <!-- day -->
                 <label @click="clickFocus('day')" :class="{'border-sl-blue':formActives.day==true, 'border-slate-600 ':formActives.day==false}" class="border relative cursor-pointer rounded-md w-1/4 group h-12 overflow-hidden" for="day">
                     <p :class="{'text-sl-blue':formActives.day==true, 'text-slate-600':formActives.day==false}" class="leading-4 pt-1 text-xs select-none px-2 transition-all ">Gün</p>
@@ -148,8 +153,12 @@ onMounted(()=>{
 </svg>
                 </label>
                 </div>
+                <!-- birthdate End -->
+
             </div>
-            <!-- PRIVACY TAB -->
+            <!-- PAGE1 form  End-->
+
+            <!-- PAGE2 privacy  Start-->
             <div v-if="step==2" class=" w-full h-full px-2 md:px-16 py-2 md:py-2 flex items-start justify-start gap-6 md:gap-3 flex-col ">
                 <p class="text-3xl font-bold text-white/90 mt-8">Gizlilik ve gerekli izinler</p>
                 <p class="text-zinc-300 text-xs">
@@ -159,11 +168,13 @@ onMounted(()=>{
                     Detaylı bilgi almak için bizimle ileşime geçmekten çekinme. İletişim adreslerimiz sana daima açıktır.
                 </p>
             </div>
-            <!--password TAB -->
+            <!-- PAGE2 privacy  End-->
 
+            <!--PAGE3 password  Start-->
             <div v-if="step==3"  class=" w-full h-full px-2 md:px-16 py-2 md:py-2 flex items-start justify-center gap-3 flex-col ">
-            <ul  class="w-full h-fit flex flex-col items-start justify-center gap-2">
-                <!-- name display -->
+                <!-- user accepted info Start -->
+                <ul  class="w-full h-fit flex flex-col items-start justify-center gap-2">
+                <!-- name display Start-->
                 <li class="flex items-center justify-center gap-3">
                     <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm0-6a2 2 0 1 1 0 4 2 2 0 0 1 0-4Z"></path>
@@ -173,7 +184,8 @@ onMounted(()=>{
                        {{createAccForm.name}}
                    </p>
                 </li>
-                <!-- mail display -->
+                <!-- name display End-->
+                <!-- mail display Start-->
                 <li class="flex items-center justify-center gap-3">
                     <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M19 4H5a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3Zm-.67 2L12 10.75 5.67 6h12.66ZM19 18H5a1 1 0 0 1-1-1V7.25l7.4 5.55a1 1 0 0 0 1.2 0L20 7.25V17a1 1 0 0 1-1 1Z"></path>
@@ -182,7 +194,8 @@ onMounted(()=>{
                     {{createAccForm.mail}}
                    </p>
                 </li>
-                <!-- birthdate display -->
+                <!-- mail display End-->
+                <!-- birthdate display Start-->
                 <li class="flex items-center justify-center gap-3">
                     <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M18 4h-1V3a1 1 0 0 0-2 0v1H9V3a1 1 0 0 0-2 0v1H6a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3ZM6 6h1v1a1 1 0 0 0 2 0V6h6v1a1 1 0 0 0 2 0V6h1a1 1 0 0 1 1 1v4H5V7a1 1 0 0 1 1-1Zm12 14H6a1 1 0 0 1-1-1v-6h14v6a1 1 0 0 1-1 1Z"></path>
@@ -194,32 +207,42 @@ onMounted(()=>{
                    </p>
 
                 </li>
-            </ul>
-            <!-- userid -->
+                <!-- birthdate display End-->
+            
+                </ul>
+                <!-- user accepted info End -->
+            <!-- user id @ Start -->
             <label @click="clickFocus('userid')" :class="{'border-sl-blue':formActives.userid==true, 'border-slate-600 ':formActives.userid==false}" class="border shrink-0 relative cursor-text w-full group h-16 rounded-md overflow-hidden" for="userid">
                 <p :class="{'leading-4 text-xs text-sl-blue pt-1':formActives.userid==true, 'leading-[56px] text-xl text-slate-600':formActives.userid==false}" class="select-none px-2 transition-all ">Kullanıcı adı</p>
                 <input :class="{'absolute bottom-0 left-0' : formActives.userid==true}" @focus="clickFocus('userid')" class="outline-none w-full delay-1000 bg-transparent text-white  p-2 " type="text" name="userid" id="userid" autocomplete="off" maxlength="50" v-model="createAccForm.userid">
             </label>
-            <!-- password -->
+            <!-- user id @ End -->
+
+            <!-- password Start-->
             <label @click="clickFocus('password')" :class="{'border-sl-blue':formActives.password==true, 'border-slate-600 ':formActives.password==false}" class="border shrink-0 relative cursor-text w-full group h-16 rounded-md overflow-hidden" for="password">
                 <p :class="{'leading-4 text-xs text-sl-blue pt-1':formActives.password==true, 'leading-[56px] text-xl text-slate-600':formActives.password==false}" class="select-none px-2 transition-all ">Şifre</p>
                 <input :class="{'absolute bottom-0 left-0' : formActives.password==true}" @focus="clickFocus('password')" class="outline-none w-full delay-1000 bg-transparent text-white  p-2 " type="password" name="password" id="password" autocomplete="off" maxlength="50" v-model="createAccForm.password">
             </label>
+            <!-- password End-->
+
         </div>
+            <!--PAGE3 password  End-->
             
-            <!-- RESULT TAB -->
+            <!-- PAGE4 result  Start-->
             <div v-if="step==4" class=" w-full h-full px-2 md:px-16 py-2 md:py-2 flex items-start justify-start gap-6 md:gap-3 flex-col ">
                 <div class="w-full h- relative ">
                     <img draggable="false" loading="eager" class=" w-full h-full mix-blend-screen" src="/src/assets/confetti.gif" alt="confetti">
                     <h1 class="text-white/90 absolute bottom-0 left-0 bg-gradient-to-t from-sl-black via-sl-black to-transparent py-10 w-full text-center select-none text-3xl font-bold"> <strong class="text-sl-blue">Slyweester</strong>'a hoşgeldin</h1>
                 </div>
             </div>
+            <!-- PAGE4 result  End-->
 
-            <!-- button area -->
+            <!--bottom button area Start -->
             <div class="border-t-shadow w-full h-1/6 flex items-center justify-center">
                 <button v-if="step<=3" @click="nextStep" :disabled="checkform" class="text-black bg-white w-9/12 py-2 font-bold tracking-wider rounded-full hover:bg-zinc-300 disabled:pointer-events-none disabled:bg-zinc-500">İleri</button>
                 <button v-if="step==4" @click="goHome" class="text-black bg-white w-9/12 py-2 font-bold tracking-wider rounded-full hover:bg-zinc-300 disabled:pointer-events-none disabled:bg-zinc-500">Keşfet</button>
             </div>
+            <!--bottom button area End -->
         </div>
 
     </div>

@@ -6,7 +6,7 @@ import store from "/src/store";
 
 
 const tab=ref("slywet")
-const openDotsMenu = ref(false)
+
 
 const logOut=()=>{
     router.push("/")
@@ -17,6 +17,7 @@ const logOut=()=>{
 <template>
     <div class="flex items-start justify-start flex-col overflow-y-auto box-border w-full h-full ">
        
+        <!-- header Start -->
         <div class="sticky  top-0 w-full h-fit z-50 backdrop-blur-sm cursor-pointer bg-sl-black/80 px-4 py-1 text-white flex items-center justify-start gap-4 md:gap-10">
             <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path d="M19 11.001H7.14l3.63-4.36a1.001 1.001 0 0 0-1.54-1.28l-5 6a1.184 1.184 0 0 0-.09.15c0 .05 0 .08-.07.13a1 1 0 0 0-.07.36 1 1 0 0 0 .07.36c0 .05 0 .08.07.13.026.052.056.103.09.15l5 6a1 1 0 0 0 1.41.13 1 1 0 0 0 .13-1.41l-3.63-4.36H19a1 1 0 0 0 0-2Z"></path>
@@ -25,19 +26,19 @@ const logOut=()=>{
                 <p class="font-bold"> username</p>
                 <p class="font-normal tracking-wider text-xs text-zinc-500"> 4.617 Slywet</p>
             </div>
-            <div class="ml-auto relative">
-                <svg @click="openDotsMenu = !openDotsMenu"  width="24" height="24" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2Zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2Zm0 12c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2Z"></path>
-                </svg>
-                <div @click="logOut()" @mouseleave="openDotsMenu=false" class=" w-fit absolute top-10 right-0" :class="{'invisible':openDotsMenu==false ,'visible':openDotsMenu==true }">
-                    <div class="border w-32 shrink-0 px-4 py-1 rounded-full hover:bg-white/10 backdrop-blur-md cursor-pointer transition-all duration-150">
-                        <p class="font-bold text-white w-full text-center ">Çıkış yap</p>
-                    </div>
-                </div>
-            </div>
+            <!-- log out dots menu Start -->
+            <svg class="ml-auto" @click="logOut" width="24" height="24" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7 6a1 1 0 0 0 0-2H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2H6V6h1Z"></path>
+                <path d="m20.82 11.421-2.82-4a1 1 0 1 0-1.63 1.16l1.72 2.42H10a1 1 0 0 0 0 2h8l-1.8 2.4a1 1 0 0 0 1.6 1.2l3-4a1 1 0 0 0 .02-1.18Z"></path>
+            </svg>
+            <!-- log out dots menu End -->
         </div>
+        <!-- header End -->
+        <!-- cover photo Start -->
         <div class="bg-sl-blue/50 w-full h-32 md:h-40 shrink-0"></div>
-        <div class=" box-border w-full relative shrink-0 flex items-start justify-start flex-col pl-2 md:pl-6">
+        <!-- cover photo End -->
+        <!-- bio area Start -->
+        <div  class=" box-border w-full relative shrink-0 flex items-start justify-start flex-col pl-2 md:pl-6">
             <div class="border  px-4 py-1 rounded-full hover:bg-white/10 absolute top-2 right-2 cursor-pointer transition-all duration-150">
                 <p class="font-bold text-white ">Profili düzenle</p>
             </div>
@@ -67,13 +68,18 @@ const logOut=()=>{
 
             </div>
         </div>
+        <!-- bio area End -->
+        <!-- tab buttons Start -->
         <div class="flex items-center justify-center w-full border-b border-zinc-600">
             <div @click="tab='slywet'" class="bg-sl-black transition-all cursor-pointer hover:bg-white/10 px-4 pt-4 pb-px w-full basis-1/2"><p :class="{'!border-sl-blue !text-white !font-semibold':tab=='slywet'}" class="border-b-4 pb-2 mx-auto border-transparent font-normal text-zinc-500 w-fit">Slywetler</p></div>
             <div @click="tab='yanıtlar'" class="bg-sl-black transition-all cursor-pointer hover:bg-white/10 px-4 pt-4 pb-px w-full basis-1/2"><p :class="{'!border-sl-blue !text-white !font-semibold':tab=='yanıtlar'}" class="border-b-4 pb-2 mx-auto border-transparent font-normal text-zinc-500 w-fit">Yanıtlar</p></div>
             <div @click="tab='medya'" class="bg-sl-black transition-all cursor-pointer hover:bg-white/10 px-4 pt-4 pb-px w-full basis-1/2"><p :class="{'!border-sl-blue !text-white !font-semibold':tab=='medya'}" class="border-b-4 pb-2 mx-auto border-transparent font-normal text-zinc-500 w-fit">Medya</p></div>
             <div @click="tab='beğeni'" class="bg-sl-black transition-all cursor-pointer hover:bg-white/10 px-4 pt-4 pb-px w-full basis-1/2"><p :class="{'!border-sl-blue !text-white !font-semibold':tab=='beğeni'}" class="border-b-4 pb-2 mx-auto border-transparent font-normal text-zinc-500 w-fit">Beğeni</p></div>
         </div>
+        <!-- tab buttons End -->
+        <!-- slyweets Start -->
         <slyweetCard class="px-2" v-for="sly in store.state.slyweets" :key="sly" :id="sly.id" :content="sly.content" :date="sly.date" :name="sly.name" :tag="sly.tag" :like="9760" ></slyweetCard>
+        <!-- slyweets End -->
         <div v-for="i in 100" :key="i">{{ i }}</div>
 
     </div>
@@ -85,8 +91,11 @@ div > svg{
     filter: drop-shadow(0px 0px 0px transparent);
 
 }
-div:hover > svg{
+div > svg:hover{
 filter: drop-shadow(0px 0px 5px #01BAEF);
+}
+.boxshadow{
+    box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.568);
 }
 
 </style>

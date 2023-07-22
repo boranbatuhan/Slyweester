@@ -1,20 +1,21 @@
 <script setup>
+import {  ref } from 'vue';
 import router from '/src/router';
-
 
 const props = defineProps({
     tag:String,
     count:Number
 })
 
-const goTagDetails=()=>{
-    const tagName = props.tag
-    router.push('/tag/'+tagName)
+const tagName = ref(props.tag)
+const goTagDetails =()=>{
+    router.push({ path: "/tag/" + tagName.value })
 }
+
 </script>
 
 <template>
-<div @click="goTagDetails" class=" w-[200px] shrink-0">
+<div @click="goTagDetails" :key="tagName" class=" w-[200px] shrink-0">
     <div class="relative  cursor-pointer shrink-0 text-sl-blue w-fit h-fit m-1 select-none flex items-center justify-center ">
         <img draggable="false" loading="lazy" class="absolute py-px top-0 left-0 h-full" src="/src/assets/glitter.gif" alt="glitter">
         <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

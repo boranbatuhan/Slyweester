@@ -48,20 +48,37 @@ const toggleMiniqMenu=()=>{
             </li>
             <!-- home End -->
 
-            <!-- help Start -->
-            <li @click="goPage('help')" class="order-3 md:order-3  menu-item group">
+            <!-- slywerify Start -->
+            <li @click="goPage('slywerify')" class="order-3 md:order-3  menu-item group">
                 <div class="w-fit flex items-center justify-center group-hover:bg-white/10  rounded-full px-2 mx-2 py-1">
 
-                <svg  width="24" height="24" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm0 18a8 8 0 1 1 0-16.001A8 8 0 0 1 12 20Z"></path>
-                    <path d="M12 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"></path>
-                    <path d="M12 10a1 1 0 0 0-1 1v5a1 1 0 0 0 2 0v-5a1 1 0 0 0-1-1Z"></path>
-                </svg>   
-                <p class="hidden md:inline-flex  w-fit px-2 mx-2 py-1 mr-auto">Yardım</p>
+                    <svg  class="animate-glow " version="1.0" xmlns="http://www.w3.org/2000/svg"
+ width="24" height="24" viewBox="0 0 500.000000 500.000000"
+ preserveAspectRatio="xMidYMid meet">
+
+<g  transform="translate(0.000000,500.000000) scale(0.100000,-0.100000)"
+fill="#fff" >
+<path d="M3760 4683 c-129 -110 -369 -288 -505 -373 -235 -148 -504 -266 -652
+-286 -50 -6 -51 -6 -116 48 -132 108 -315 194 -546 254 -126 34 -137 35 -200
+24 -131 -23 -276 -82 -393 -161 -32 -22 -94 -50 -145 -66 -87 -27 -91 -27
+-328 -24 -236 2 -402 -8 -479 -30 -56 -16 -136 -101 -180 -191 -38 -79 -62
+-207 -51 -275 13 -81 29 -141 52 -200 l25 -62 -31 -93 c-62 -187 -78 -320 -51
+-417 24 -90 173 -201 390 -294 140 -59 222 -79 505 -127 473 -80 622 -133 781
+-282 120 -113 153 -184 264 -568 122 -424 213 -825 245 -1085 28 -225 29 -226
+43 -75 74 806 206 1348 366 1514 49 50 105 69 369 121 214 43 297 69 442 139
+198 95 374 226 598 445 130 127 143 144 220 276 197 341 359 704 427 960 29
+108 57 282 47 291 -3 3 -36 -16 -73 -41 -263 -177 -759 -325 -1182 -352 l-103
+-6 64 129 c180 361 285 673 275 820 l-3 51 -75 -64z m-2075 -828 c174 -37 342
+-154 486 -337 37 -47 28 -42 -67 35 -225 183 -591 242 -957 153 -54 -13 -97
+-22 -97 -20 0 2 35 24 77 49 203 119 382 157 558 120z"/>
+</g>
+                    </svg>
+
+                <p class="hidden md:inline-flex  w-fit px-2 mx-2 py-1 mr-auto">Doğrulanmış</p>
             </div>
         
             </li>
-            <!-- help End -->
+            <!-- slywerify End -->
 
             <!-- tags Start -->
             <li @click="goPage('tags')" class="order-4 md:order-4  menu-item group">
@@ -154,6 +171,20 @@ const toggleMiniqMenu=()=>{
 
 .boxshadow{
     box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.568);
+}
+.animate-glow{
+    animation: glowing 1.5s infinite alternate ;
+}
+
+@keyframes glowing {
+    from {
+    filter: drop-shadow( 0px 0px 0px  rgb(1 186 239))
+
+    }
+    to{
+    filter: drop-shadow( 0px 0px 10px  rgb(1 186 239))
+
+    }
 }
 
 

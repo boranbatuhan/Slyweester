@@ -18,9 +18,9 @@ import store from "/src/store"
             component: ()=> import ("/src/router/views/TagsPage.vue")      
         },
         {                                                  
-            path:'/help',                                                 
-            name:'Help',                                              
-            component: ()=> import ("/src/router/views/HelpPage.vue")      
+            path:'/slywerify',                                                 
+            name:'Slywerify',                                              
+            component: ()=> import ("/src/router/views/SlywerifyPage.vue")      
         },
         {                                                  
             path:'/tag/:tagname',                  

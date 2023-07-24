@@ -79,7 +79,7 @@ fill="#ffffff" stroke="none">
             <!-- button create End -->
             <p class="text-white font-bold text-sm my-1">Zaten bir hesabın var mı?</p>
             <!-- button login Start -->
-            <div @click="modalName='login'" class="w-72 select-none cursor-pointer hover:saturate-[.75] h-10 mb-1 px-2 py-1 bg-black hover:bg-sl-blue/10 border border-sl-blue text-sl-blue font-bold rounded-full flex items-center justify-center">
+            <div @click="modalName='login'" class="w-72 select-none cursor-pointer hover:saturate-[.75] h-10 mb-1 px-2 py-1 bg-sl-black hover:bg-sl-blue/10 border border-sl-blue text-sl-blue font-bold rounded-full flex items-center justify-center">
                 <p>Giriş yap</p>
             </div>
             <!-- button login End -->

@@ -8,7 +8,9 @@ const props = defineProps({
     closeModal:Function
 })
 
-const step = ref(1)
+const step = ref(3)
+
+//input form
 const createAccForm=reactive({
     name:"",
     mail:"",
@@ -20,6 +22,7 @@ const createAccForm=reactive({
 
 })
 
+// form focus/antivity 
 const formActives=reactive({
     name:false,
     mail:false,
@@ -32,6 +35,14 @@ const formActives=reactive({
 
 })
 
+// input form errors
+const formErrors=reactive({
+    name:false,
+    mail:false,
+    userid:false,
+})
+
+//click elements for focus
 const clickFocus=(id)=>{
     for (const key in formActives) {
     if (key === id) {
@@ -44,6 +55,8 @@ const clickFocus=(id)=>{
     }
   }
 }
+
+//reset all inputs and bools
 const reset=()=>{
     formActives.name=false
     formActives.mail=false
@@ -61,12 +74,71 @@ const reset=()=>{
     createAccForm.userid=""
 }
 
+
+//check input is true
+const formValidate = ()=>{
+    // name check
+    if( createAccForm.name.length > 50)
+    {
+        formErrors.name = true
+    }
+
+    const namePattern = /[^a-zA-ZğüşıöçĞÜŞİÖÇ\s]/g
+    formErrors.name = namePattern.test(createAccForm.name)
+
+    // mail check
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    formErrors.mail = !emailPattern.test(createAccForm.mail)
+
+}
+
+// name fix
+const nameFix=()=>{
+    createAccForm.name = createAccForm.name.replace(/[^a-zA-ZğüşıöçĞÜŞİÖÇ\s]/g, '').trim();
+    const namePattern = /[^a-zA-ZğüşıöçĞÜŞİÖÇ\s]/
+    formErrors.name = namePattern.test(createAccForm.name)
+}
+
+//check username
+const checkUsername=()=>{
+    if(createAccForm.userid =='sly')
+    {
+        formErrors.userid=true
+    }
+    else if( createAccForm.userid != 'sly')
+    {
+        formErrors.userid = false
+        step.value++
+    }
+    else{
+        formErrors.userid=false
+        step.value++
+
+    }
+}
+
 const nextStep=()=>{
-    console.log('createAccForm :>> ', createAccForm);
+
     if(step.value<=3)
     {
-    step.value++
+        if(step.value ==1)
+        {
+            formValidate()
+            console.log('createAccForm :>> ', createAccForm);
+            if(formErrors.name == false && formErrors.mail==false)
+            step.value++
+        
+        }
+        else if(step.value ==2){
+            step.value++
 
+        }
+        else if(step.value ==3){
+            checkUsername()
+        }
+        else{
+            step.value++
+        }         
     }
     else{
         step.value=4
@@ -76,11 +148,9 @@ const goHome=()=>{
     router.push("/home")
 }
 
+// is form empty check
 const checkform = computed(() => {
-
-    return  step.value<=2 ? (createAccForm.name !== "" && createAccForm.mail !== "" && createAccForm.day > 0 && createAccForm.month > 0 && createAccForm.year > 0 ? false : true) : (createAccForm.password !== "" && createAccForm.password.length > 8 ? false : true);
-
-
+    return  step.value<=2 ? (createAccForm.name !== "" && createAccForm.mail !== "" && createAccForm.day > 0 && createAccForm.month > 0 && createAccForm.year > 0 ? false : true) : (createAccForm.password !== "" && createAccForm.password.length > 5 ? false : true);
 });
 
 
@@ -109,16 +179,18 @@ onMounted(()=>{
             <div v-if="step==1" class=" w-full h-full px-2 md:px-16 py-2 md:py-2 flex items-start justify-start gap-6 md:gap-3 flex-col">
                 <p class="text-white/90 font-bold text-3xl">Hesabını oluştur</p>
                 <!-- name Start-->
-                <label @click="clickFocus('name')" :class="{'border-sl-blue':formActives.name==true, 'border-slate-600 ':formActives.name==false}" class="border relative cursor-text w-full group h-16 rounded-md overflow-hidden" for="name">
-                    <p :class="{'leading-4 text-xs text-sl-blue pt-1':formActives.name==true, 'leading-[56px] text-xl text-slate-600':formActives.name==false}" class="select-none px-2 transition-all ">İsim</p>
+                <label @click="clickFocus('name')" :class="{'border-sl-blue':formActives.name==true, 'border-slate-600 ':formActives.name==false , 'border-red-600 text-red-600 ':formErrors.name==true}" class="border relative cursor-text w-full group h-16 rounded-md overflow-hidden" for="name">
+                    <p :class="{'leading-4 text-xs text-sl-blue pt-1':formActives.name==true, 'leading-[56px] text-xl text-slate-600':formActives.name==false, 'border-red-600 text-red-600 ':formErrors.name==true}" class="select-none px-2 transition-all ">İsim</p>
                     <input :class="{'absolute bottom-0 left-0' : formActives.name==true}" @focus="clickFocus('name')" class="outline-none w-full delay-1000 bg-transparent text-white  p-2 " type="text" name="name" id="name" autocomplete="off" maxlength="50" v-model="createAccForm.name">
-                    <p :class="{'text-sl-blue':formActives.name==true, 'text-slate-600':formActives.name==false}"  class="select-none text-xs absolute top-1 right-1">{{ createAccForm.name.length }} / 50 </p>
+                    <p :class="{'text-sl-blue':formActives.name==true, 'text-slate-600':formActives.name==false, 'border-red-600 text-red-600 ':formErrors.name==true}"  class="select-none text-xs absolute top-1 right-1">{{ createAccForm.name.length }} / 50 </p>
+                    <svg v-if="formErrors.name"  @click="nameFix" class="cursor-pointer absolute bottom-2 right-2" width="24" height="24" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="m11 4-.5-1-.5 1-1 .125.834.708L9.5 6l1-.666 1 .666-.334-1.167.834-.708L11 4Zm8.334 10.666L18.5 13l-.834 1.666-1.666.209 1.39 1.181L16.833 18l1.666-1.111L20.166 18l-.555-1.944 1.39-1.181-1.667-.209ZM6.667 6.333 6 5l-.667 1.333L4 6.5l1.111.944L4.667 9 6 8.111 7.333 9 6.89 7.444 8 6.5l-1.333-.167ZM3.414 17c0 .534.208 1.036.586 1.414L5.586 20c.378.378.88.586 1.414.586.534 0 1.036-.208 1.414-.586L20 8.414c.378-.378.586-.88.586-1.414 0-.534-.208-1.036-.586-1.414L18.414 4c-.756-.756-2.072-.756-2.828 0L4 15.586c-.378.378-.586.88-.586 1.414ZM17 5.414 18.586 7 15 10.586 13.414 9 17 5.414Z"></path>
+                    </svg>
                 </label>
                 <!-- name End-->
-
                 <!-- mail Start-->
-                <label @click="clickFocus('mail')" :class="{'border-sl-blue':formActives.mail==true, 'border-slate-600 ':formActives.mail==false}" class="border relative cursor-text w-full group h-16 rounded-md overflow-hidden" for="mail">
-                    <p :class="{'leading-4 text-xs text-sl-blue pt-1':formActives.mail==true, 'leading-[56px] text-xl text-slate-600':formActives.mail==false}" class="select-none px-2 transition-all ">E-posta</p>
+                <label @click="clickFocus('mail')" :class="{'border-sl-blue':formActives.mail==true, 'border-slate-600 ':formActives.mail==false , 'border-red-600 text-red-600 ':formErrors.mail==true}" class="border relative cursor-text w-full group h-16 rounded-md overflow-hidden" for="mail">
+                    <p :class="{'leading-4 text-xs text-sl-blue pt-1':formActives.mail==true, 'leading-[56px] text-xl text-slate-600':formActives.mail==false , 'border-red-600 text-red-600 ':formErrors.mail==true}" class="select-none px-2 transition-all ">E-posta</p>
                     <input :class="{'absolute bottom-0 left-0' : formActives.mail==true}" @focus="clickFocus('mail')" class="outline-none w-full delay-1000 bg-transparent text-white  p-2 " type="email" name="mail" id="mail" autocomplete="off"  v-model="createAccForm.mail">
                 </label>
                 <!-- mail End-->
@@ -212,16 +284,18 @@ onMounted(()=>{
                 </ul>
                 <!-- user accepted info End -->
             <!-- user id @ Start -->
-            <label @click="clickFocus('userid')" :class="{'border-sl-blue':formActives.userid==true, 'border-slate-600 ':formActives.userid==false}" class="border shrink-0 relative cursor-text w-full group h-16 rounded-md overflow-hidden" for="userid">
-                <p :class="{'leading-4 text-xs text-sl-blue pt-1':formActives.userid==true, 'leading-[56px] text-xl text-slate-600':formActives.userid==false}" class="select-none px-2 transition-all ">Kullanıcı adı</p>
-                <input :class="{'absolute bottom-0 left-0' : formActives.userid==true}" @focus="clickFocus('userid')" class="outline-none w-full delay-1000 bg-transparent text-white  p-2 " type="text" name="userid" id="userid" autocomplete="off" maxlength="50" v-model="createAccForm.userid">
+            <label @click="clickFocus('userid')" :class="{'border-sl-blue':formActives.userid==true, 'border-slate-600 ':formActives.userid==false, 'border-red-600 text-red-600 ':formErrors.userid==true}" class="border shrink-0 relative cursor-text w-full group h-16 rounded-md overflow-hidden" for="userid">
+                <p :class="{'leading-4 text-xs text-sl-blue pt-1':formActives.userid==true, 'leading-[56px] text-xl text-slate-600':formActives.userid==false,'border-red-600 text-red-600 ':formErrors.userid==true}" class="select-none px-2 transition-all ">Kullanıcı adı</p>
+                <input :class="{'absolute bottom-0 left-0' : formActives.userid==true}" @focus="clickFocus('userid')" class="outline-none w-full delay-1000 bg-transparent text-white  p-2 " type="text" name="userid" id="userid" autocomplete="off" maxlength="20" v-model="createAccForm.userid">
+                <p :class="{'text-sl-blue':formActives.userid==true, 'text-slate-600':formActives.userid==false, 'border-red-600 text-red-600 ':formErrors.userid==true}"  class="select-none text-xs absolute top-1 right-1">{{ createAccForm.userid.length }} / 20 </p>
             </label>
             <!-- user id @ End -->
 
             <!-- password Start-->
             <label @click="clickFocus('password')" :class="{'border-sl-blue':formActives.password==true, 'border-slate-600 ':formActives.password==false}" class="border shrink-0 relative cursor-text w-full group h-16 rounded-md overflow-hidden" for="password">
                 <p :class="{'leading-4 text-xs text-sl-blue pt-1':formActives.password==true, 'leading-[56px] text-xl text-slate-600':formActives.password==false}" class="select-none px-2 transition-all ">Şifre</p>
-                <input :class="{'absolute bottom-0 left-0' : formActives.password==true}" @focus="clickFocus('password')" class="outline-none w-full delay-1000 bg-transparent text-white  p-2 " type="password" name="password" id="password" autocomplete="off" maxlength="50" v-model="createAccForm.password">
+                <input :class="{'absolute bottom-0 left-0' : formActives.password==true}" @focus="clickFocus('password')" class="outline-none w-full delay-1000 bg-transparent text-white  p-2 " type="password" name="password" id="password" autocomplete="off" maxlength="20" v-model="createAccForm.password">
+                <p :class="{'text-sl-blue':createAccForm.password.length > 6, 'text-slate-600':formActives.password==false,'text-slate-600':createAccForm.password.length < 6, 'border-red-600 text-red-600 ':formErrors.password==true}"  class="select-none text-xs absolute top-1 right-1">{{ createAccForm.password.length }} / 20 </p>
             </label>
             <!-- password End-->
 
@@ -230,8 +304,8 @@ onMounted(()=>{
             
             <!-- PAGE4 result  Start-->
             <div v-if="step==4" class=" w-full h-full px-2 md:px-16 py-2 md:py-2 flex items-start justify-start gap-6 md:gap-3 flex-col ">
-                <div class="w-full h- relative ">
-                    <img draggable="false" loading="eager" class=" w-full h-full mix-blend-screen" src="/src/assets/confetti.gif" alt="confetti">
+                <div class="w-full h-full relative ">
+                    <img draggable="false" loading="lazy" class=" w-full h-full mix-blend-screen" src="/src/assets/confetti.gif" alt="confetti">
                     <h1 class="text-white/90 absolute bottom-0 left-0 bg-gradient-to-t from-sl-black via-sl-black to-transparent py-10 w-full text-center select-none text-3xl font-bold"> <strong class="text-sl-blue">Slyweester</strong>'a hoşgeldin</h1>
                 </div>
             </div>

@@ -37,7 +37,7 @@ onMounted(()=>{
 
 <template>
     <div class="w-full h-full overflow-y-auto">
-        <logo @click="tab=1" class="h-10 mx-auto"></logo>
+        <logo v-if="tab==1" @click="tab=1" class="h-10 mx-auto"></logo>
         <!-- tab1 Start -->
         <div v-if="tab==1" class="flex items-center justify-start flex-col text-white/90">
             <p class=" my-5 font-bold animate-glow text-4xl ">Slywerify</p>
@@ -122,9 +122,9 @@ class="text-sl-blue fill-sl-blue" stroke="none">
             <!-- benefits Start -->
             <div class="w-full px-10 md:px-20 mb-10">
                 <ul class="list-disc text-sl-blue">
-                    <li> <p class="!text-white">Gerçek kişi veya kurum olduğunu göster</p> </li>
-                    <li> <p class="!text-white"> Sohbetlerde ve aramada öncelikli sıralamalar</p></li>
-                    <li> <p class="!text-white"> Akışta öncelikli gösterim ve öne çıkış</p></li>
+                    <li> <p class="!text-white"> Gerçek kişi veya kurum olduğunun gösterimi</p> </li>
+                    <li> <p class="!text-white"> Aramada öncelikli sıralamalar</p></li>
+                    <li> <p class="!text-white"> Akışta öncelikli gösterim</p></li>
                     <li> <p class="!text-white"> Daha uzun slywetler</p></li>
                     <li> <p class="!text-white"> Öncelikli güncelleme erişimi</p></li>
                 </ul>

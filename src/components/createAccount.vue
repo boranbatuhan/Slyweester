@@ -1,5 +1,4 @@
 <script setup>
-import logo from "/src/components/logo.vue"
 import { computed, onMounted, reactive, ref } from "vue";
 import router from "/src/router"
 
@@ -8,7 +7,7 @@ const props = defineProps({
     closeModal:Function
 })
 
-const step = ref(3)
+const step = ref(1)
 
 //input form
 const createAccForm=reactive({
@@ -125,6 +124,7 @@ const nextStep=()=>{
         {
             formValidate()
             console.log('createAccForm :>> ', createAccForm);
+            console.log('formErrors :>> ', formErrors);
             if(formErrors.name == false && formErrors.mail==false)
             step.value++
         
@@ -179,19 +179,19 @@ onMounted(()=>{
             <div v-if="step==1" class=" w-full h-full px-2 md:px-16 py-2 md:py-2 flex items-start justify-start gap-6 md:gap-3 flex-col">
                 <p class="text-white/90 font-bold text-3xl">Hesabını oluştur</p>
                 <!-- name Start-->
-                <label @click="clickFocus('name')" :class="{'border-sl-blue':formActives.name==true, 'border-slate-600 ':formActives.name==false , 'border-red-600 text-red-600 ':formErrors.name==true}" class="border relative cursor-text w-full group h-16 rounded-md overflow-hidden" for="name">
-                    <p :class="{'leading-4 text-xs text-sl-blue pt-1':formActives.name==true, 'leading-[56px] text-xl text-slate-600':formActives.name==false, 'border-red-600 text-red-600 ':formErrors.name==true}" class="select-none px-2 transition-all ">İsim</p>
+                <label @click="clickFocus('name')" :class="{'border-sl-blue':formActives.name==true, 'border-slate-600 ':formActives.name==false , '!border-red-600 !text-red-600 ':formErrors.name==true}" class="border relative cursor-text w-full group h-16 rounded-md overflow-hidden" for="name">
+                    <p :class="{'leading-4 text-xs text-sl-blue pt-1':formActives.name==true, 'leading-[56px] text-xl text-slate-600':formActives.name==false, '!border-red-600 !text-red-600 ':formErrors.name==true}" class="select-none px-2 transition-all ">İsim</p>
                     <input :class="{'absolute bottom-0 left-0' : formActives.name==true}" @focus="clickFocus('name')" class="outline-none w-full delay-1000 bg-transparent text-white  p-2 " type="text" name="name" id="name" autocomplete="off" maxlength="50" v-model="createAccForm.name">
-                    <p :class="{'text-sl-blue':formActives.name==true, 'text-slate-600':formActives.name==false, 'border-red-600 text-red-600 ':formErrors.name==true}"  class="select-none text-xs absolute top-1 right-1">{{ createAccForm.name.length }} / 50 </p>
+                    <p :class="{'text-sl-blue':formActives.name==true, 'text-slate-600':formActives.name==false, '!border-red-600 !text-red-600 ':formErrors.name==true}"  class="select-none text-xs absolute top-1 right-1">{{ createAccForm.name.length }} / 50 </p>
                     <svg v-if="formErrors.name"  @click="nameFix" class="cursor-pointer absolute bottom-2 right-2" width="24" height="24" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path d="m11 4-.5-1-.5 1-1 .125.834.708L9.5 6l1-.666 1 .666-.334-1.167.834-.708L11 4Zm8.334 10.666L18.5 13l-.834 1.666-1.666.209 1.39 1.181L16.833 18l1.666-1.111L20.166 18l-.555-1.944 1.39-1.181-1.667-.209ZM6.667 6.333 6 5l-.667 1.333L4 6.5l1.111.944L4.667 9 6 8.111 7.333 9 6.89 7.444 8 6.5l-1.333-.167ZM3.414 17c0 .534.208 1.036.586 1.414L5.586 20c.378.378.88.586 1.414.586.534 0 1.036-.208 1.414-.586L20 8.414c.378-.378.586-.88.586-1.414 0-.534-.208-1.036-.586-1.414L18.414 4c-.756-.756-2.072-.756-2.828 0L4 15.586c-.378.378-.586.88-.586 1.414ZM17 5.414 18.586 7 15 10.586 13.414 9 17 5.414Z"></path>
                     </svg>
                 </label>
                 <!-- name End-->
                 <!-- mail Start-->
-                <label @click="clickFocus('mail')" :class="{'border-sl-blue':formActives.mail==true, 'border-slate-600 ':formActives.mail==false , 'border-red-600 text-red-600 ':formErrors.mail==true}" class="border relative cursor-text w-full group h-16 rounded-md overflow-hidden" for="mail">
-                    <p :class="{'leading-4 text-xs text-sl-blue pt-1':formActives.mail==true, 'leading-[56px] text-xl text-slate-600':formActives.mail==false , 'border-red-600 text-red-600 ':formErrors.mail==true}" class="select-none px-2 transition-all ">E-posta</p>
-                    <input :class="{'absolute bottom-0 left-0' : formActives.mail==true}" @focus="clickFocus('mail')" class="outline-none w-full delay-1000 bg-transparent text-white  p-2 " type="email" name="mail" id="mail" autocomplete="off"  v-model="createAccForm.mail">
+                <label @click="clickFocus('mail')" :class="{'border-sl-blue':formActives.mail==true, 'border-slate-600 ':formActives.mail==false , '!border-red-600 !text-red-600 ':formErrors.mail==true}" class="border relative cursor-text w-full group h-16 rounded-md overflow-hidden" for="mail">
+                    <p :class="{'leading-4 text-xs text-sl-blue pt-1':formActives.mail==true, 'leading-[56px] text-xl text-slate-600':formActives.mail==false , '!border-red-600 !text-red-600 ':formErrors.mail==true}" class="select-none px-2 transition-all ">E-posta</p>
+                    <input :class="{'absolute bottom-0 left-0' : formActives.mail==true}" @focus="clickFocus('mail')" class="outline-none w-full delay-1000 bg-transparent text-white  p-2 " type="text" name="mail" id="mail" autocomplete="off"  v-model="createAccForm.mail">
                 </label>
                 <!-- mail End-->
 
@@ -284,10 +284,10 @@ onMounted(()=>{
                 </ul>
                 <!-- user accepted info End -->
             <!-- user id @ Start -->
-            <label @click="clickFocus('userid')" :class="{'border-sl-blue':formActives.userid==true, 'border-slate-600 ':formActives.userid==false, 'border-red-600 text-red-600 ':formErrors.userid==true}" class="border shrink-0 relative cursor-text w-full group h-16 rounded-md overflow-hidden" for="userid">
-                <p :class="{'leading-4 text-xs text-sl-blue pt-1':formActives.userid==true, 'leading-[56px] text-xl text-slate-600':formActives.userid==false,'border-red-600 text-red-600 ':formErrors.userid==true}" class="select-none px-2 transition-all ">Kullanıcı adı</p>
+            <label @click="clickFocus('userid')" :class="{'border-sl-blue':formActives.userid==true, 'border-slate-600 ':formActives.userid==false, '!border-red-600 !text-red-600 ':formErrors.userid==true}" class="border shrink-0 relative cursor-text w-full group h-16 rounded-md overflow-hidden" for="userid">
+                <p :class="{'leading-4 text-xs text-sl-blue pt-1':formActives.userid==true, 'leading-[56px] text-xl text-slate-600':formActives.userid==false,'!border-red-600 !text-red-600 ':formErrors.userid==true}" class="select-none px-2 transition-all ">Kullanıcı adı</p>
                 <input :class="{'absolute bottom-0 left-0' : formActives.userid==true}" @focus="clickFocus('userid')" class="outline-none w-full delay-1000 bg-transparent text-white  p-2 " type="text" name="userid" id="userid" autocomplete="off" maxlength="20" v-model="createAccForm.userid">
-                <p :class="{'text-sl-blue':formActives.userid==true, 'text-slate-600':formActives.userid==false, 'border-red-600 text-red-600 ':formErrors.userid==true}"  class="select-none text-xs absolute top-1 right-1">{{ createAccForm.userid.length }} / 20 </p>
+                <p :class="{'text-sl-blue':formActives.userid==true, 'text-slate-600':formActives.userid==false, '!border-red-600 !text-red-600 ':formErrors.userid==true}"  class="select-none text-xs absolute top-1 right-1">{{ createAccForm.userid.length }} / 20 </p>
             </label>
             <!-- user id @ End -->
 
@@ -295,7 +295,7 @@ onMounted(()=>{
             <label @click="clickFocus('password')" :class="{'border-sl-blue':formActives.password==true, 'border-slate-600 ':formActives.password==false}" class="border shrink-0 relative cursor-text w-full group h-16 rounded-md overflow-hidden" for="password">
                 <p :class="{'leading-4 text-xs text-sl-blue pt-1':formActives.password==true, 'leading-[56px] text-xl text-slate-600':formActives.password==false}" class="select-none px-2 transition-all ">Şifre</p>
                 <input :class="{'absolute bottom-0 left-0' : formActives.password==true}" @focus="clickFocus('password')" class="outline-none w-full delay-1000 bg-transparent text-white  p-2 " type="password" name="password" id="password" autocomplete="off" maxlength="20" v-model="createAccForm.password">
-                <p :class="{'text-sl-blue':createAccForm.password.length > 6, 'text-slate-600':formActives.password==false,'text-slate-600':createAccForm.password.length < 6, 'border-red-600 text-red-600 ':formErrors.password==true}"  class="select-none text-xs absolute top-1 right-1">{{ createAccForm.password.length }} / 20 </p>
+                <p :class="{'text-sl-blue':createAccForm.password.length > 6, 'text-slate-600':formActives.password==false,'text-slate-600':createAccForm.password.length < 6, '!border-red-600 !text-red-600 ':formErrors.password==true}"  class="select-none text-xs absolute top-1 right-1">{{ createAccForm.password.length }} / 20 </p>
             </label>
             <!-- password End-->
 

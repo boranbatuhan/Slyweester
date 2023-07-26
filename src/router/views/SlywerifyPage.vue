@@ -1,5 +1,6 @@
 <script setup>
 import {  onMounted, ref } from "vue"
+import router from "/src/router"
 import logo from "/src/components/logo.vue"
 
 const tab =ref(1)
@@ -11,10 +12,13 @@ const forward = ()=>{
     if(tab.value<=1){
         tab.value++
     }
-    else if(tab.value >=2)
+    else if(tab.value ==2)
     {
-        tab.value=2
+        router.push("/home")
+
+        tab.value=0
     }
+
 }
 
 onMounted(()=>{

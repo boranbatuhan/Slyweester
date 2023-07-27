@@ -1,10 +1,16 @@
 <script setup>
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import newSlywet from '/src/components/newSlywet.vue';
 import slyweetCard from '/src/components/slyweetCard.vue';
 import store from "/src/store"
 
 const tab = ref("sanaÖzel")
+
+
+const sortedList = computed(() => {
+    const listTemp = store.state.slyweets
+  return listTemp.sort((a, b) => b.date - a.date);
+});
 
 </script>
 
@@ -25,7 +31,7 @@ const tab = ref("sanaÖzel")
         <newSlywet></newSlywet>
         <!-- new slywet End -->
         <!-- slywets Start -->
-        <slyweetCard class="px-2" v-for="sly in store.state.slyweets" :key="sly" :id="sly.id" :content="sly.content" :date="sly.date" :name="sly.name" :tag="sly.tag" :like="9760" ></slyweetCard>
+        <slyweetCard class="px-2" v-for="sly in sortedList" :key="sly" :id="sly.id" :content="sly.content" :date="sly.date" :name="sly.name" :tag="sly.tag" :like="9760" ></slyweetCard>
         <!-- slywets End -->
  
         <ul>

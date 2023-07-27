@@ -44,9 +44,9 @@ const sortedTags = computed(() => {
         <!-- tag list End -->
         <!-- footer Start -->
         <div class="mt-auto hidden mx-auto text-xs md:flex flex-wrap items-center justify-center text-sl-blue/50">
-            <p class="basis-full text-center"><strong>6atuhan</strong> tarafından tasarlanmıştır.</p>
-            <a class="basis-1/2 text-center" href="https://github.com/6atuhan" target="_blank">. github .</a>
-            <a class="basis-1/2 text-center" href="https://linkedin.com/in/6atuhan" target="_blank">. linkedin .</a>
+            <p class="basis-full text-center"><strong>batuhanboran</strong> tarafından tasarlanmıştır.</p>
+            <a class="basis-1/2 text-center" href="https://github.com/boranbatuhan" target="_blank">. github .</a>
+            <a class="basis-1/2 text-center" href="https://linkedin.com/in/batuhanboran" target="_blank">. linkedin .</a>
         </div>
         <!-- footer End -->
     </div>

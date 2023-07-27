@@ -3,32 +3,39 @@ const store = createStore({
     state:{
         tags:[
             {
-                tag:'WWWWWWWWWW',
-                count:3
+                tag:'cats',
+                count:2
             },  
             {
-                tag:'secim2023',
-                count:3
-            },        
-            {   
-                tag:'ev',
+                tag:'tailwind',
                 count:2
             },        
             {   
-                tag:'arsa',
+                tag:'vuejs',
+                count:2
+            },        
+            {   
+                tag:'cars',
                 count:7
             },
         ],
         slyweets:[
             {
-                content:'taglı slyweet',
+                content:'slywet with tag',
+                date:1689688535510,
+                id:"userid",
+                name:"username",
+                tag:"vuejs"
+            },
+            {
+                content:'vuejs is best!',
                 date:1689688535530,
                 id:"userid",
                 name:"username",
-                tag:"ev"
+                tag:"vuejs"
             },
             {
-                content:'tagsız slyweet',
+                content:'slywet without tag',
                 date:1689688535550,
                 id:"userid",
                 name:"username",

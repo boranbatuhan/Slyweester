@@ -3,6 +3,8 @@
 <p align="center"> we love cat, not bird. </p>
 <h3 align="center"><a href="https://slyweester.vercel.app/"> Click me </a> for live demo.</h3>
 
+<p align="center"><img src="src/assets/webres.gif" loading="eager" alt="webres-demo" /></a> </p>
+
 <div align="center">
 <a href="https://vuejs.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/vuejs/vuejs-original-wordmark.svg" alt="vuejs" width="40" height="40"/> </a> 
 <a href="https://vitejs.dev" target="_blank" rel="noreferrer"> <img src="https://vitejs.dev/logo-with-shadow.png" alt="vitejs" width="40" height="40"/> </a> 

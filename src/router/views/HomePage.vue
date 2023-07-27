@@ -7,6 +7,7 @@ import store from "/src/store"
 const tab = ref("sanaÖzel")
 
 
+// sort list by date
 const sortedList = computed(() => {
     const listTemp = store.state.slyweets
   return listTemp.sort((a, b) => b.date - a.date);

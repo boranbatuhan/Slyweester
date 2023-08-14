@@ -1,7 +1,7 @@
 <h1 align="center">Slyweester</h1>
 
 <p align="center"> we love cat, not bird. </p>
-<h3 align="center"><a href="https://slyweester.vercel.app/"> Click me </a> for live demo.</h3>
+<h3 align="center"><a href="https://slyweester.vercel.app/" target="_blank"> Click me </a> for live demo.</h3>
 
 <p align="center"><img src="src/assets/webres.gif" loading="eager" alt="webres-demo" /></a> </p>
 
